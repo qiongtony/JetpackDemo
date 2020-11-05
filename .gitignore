@@ -1,0 +1,12 @@
+*.iml
+.gradle
+/local.properties
+.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+#忽略生成目录
+/outputs
+#忽略生成的渠道文件
+/*_temp.txt
