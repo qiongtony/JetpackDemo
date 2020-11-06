@@ -1,3 +1,4 @@
+include ':viewmodeldemo'
 include ':navigationdemo'
 include ':lifecycledemo'
 include ':app'
