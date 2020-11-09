@@ -1,14 +1,16 @@
 package com.example.roomdemo.bean
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "student")
 data class Student(@PrimaryKey(autoGenerate = true)
                     @ColumnInfo(name = "id", typeAffinity = ColumnInfo.INTEGER)
-                   val id: Int,
+                   var id: Int,
                    @ColumnInfo(name = "name", typeAffinity = ColumnInfo.TEXT)
-                   val name : String,
+                   var name : String,
                    @ColumnInfo(name = "age", typeAffinity = ColumnInfo.TEXT)
                    var age : String
 ) {
