@@ -1,5 +1,6 @@
 package com.example.roomdemo.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.roomdemo.bean.Student
 
@@ -18,7 +19,8 @@ interface StudentDao {
     fun updateStudent(student: Student)
 
     @Query("SELECT * FROM student")
-    fun getStudentList() : List<Student>
+    // 用LiveData包装List<Student>
+    fun getStudentList() : LiveData<List<Student>>
 
     /**
      * 根据student的id查找，这里可以看出来用:形参名可以获取到方法里的形参

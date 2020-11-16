@@ -21,10 +21,9 @@ class StudentAdapter(val context : Context) : RecyclerView.Adapter<StudentAdapte
         var tvAge : TextView = view.findViewById(R.id.tvAge)
 
         fun bindHolder(student: Student){
-            Log.w("TAG", "id = ${student.id} name = ${student.name} age = ${student.age}" )
-//            tvId.text = "id:${student.id}"
-//            tvName.text = "name:${student.name}  2333"
-//            tvAge.text = "age:$student.age"
+            tvId.text = "id:${student.id}"
+            tvName.text = "name:${student.name}  2333"
+            tvAge.text = "age:${student.age}"
         }
     }
 
@@ -37,7 +36,7 @@ class StudentAdapter(val context : Context) : RecyclerView.Adapter<StudentAdapte
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-            holder.bindHolder(dataList.get(position))
+            holder.bindHolder(dataList[position])
     }
 
     fun setData(dataList : List<Student>){

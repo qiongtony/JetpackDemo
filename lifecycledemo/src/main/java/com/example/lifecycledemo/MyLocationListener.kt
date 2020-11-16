@@ -1,6 +1,7 @@
 package com.example.lifecycledemo
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -15,7 +16,7 @@ import androidx.lifecycle.OnLifecycleEvent
  * Activity/Fragment实现了Observable，在相应生命周期会告知Observable，然后Observable通知给订阅的Observer
  * Observable->Observer
  */
-class MyLocationListener(val context : Activity, val locationChangedListener: OnLocationChangedListener) :LifecycleObserver {
+class MyLocationListener(val context : Context, val locationChangedListener: OnLocationChangedListener) :LifecycleObserver {
 
     init {
         // 初始化操作
@@ -31,7 +32,7 @@ class MyLocationListener(val context : Activity, val locationChangedListener: On
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun startGetLocation(){
-        Log.d(TAG, "startGetLocation")
+        Log.w(TAG, "startGetLocation")
     }
 
     /**
@@ -39,12 +40,12 @@ class MyLocationListener(val context : Activity, val locationChangedListener: On
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public fun stopGetLocation(){
-        Log.d(TAG, "stopGetLocation")
+        Log.w(TAG, "stopGetLocation")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public fun destroy(){
-        Log.d(TAG, "destroy")
+        Log.w(TAG, "destroy")
     }
 
     interface OnLocationChangedListener{
