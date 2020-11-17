@@ -1,3 +1,4 @@
+include ':workmanagerdemo'
 include ':roomdemo'
 include ':viewmodeldemo'
 include ':navigationdemo'

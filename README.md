@@ -11,3 +11,11 @@ Activity/Fragment实现了Observable（被观察者）接口，所以需要监�
 Service需要继承LifecycleService类，该类实现了Observable接口，然后才能添加Observer监听生命周期
 
 Application的用法特殊一点，通过ProcessLifecycleOwner.get()获取应用的LifecycleObservable然后添加Observable监听应用的生命周期
+
+## 第七章WorkManager
+应用场景：不需要立即执行的任务，用于替代后台Service（有点鸡肋吧，用处相对小）
+
+特点：
+1. 会根据API版本，23+用JobScheduler实现，小于使用AlarmManager+Broadcast Receiver实现
+2. 对于原生系统一定会执行（国内就算了吧，一堆魔改）
+3. 兼容范围光<=14
