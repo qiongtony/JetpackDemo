@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
+    <!--    app:exitAnim="@anim/alpha_out_2500"
+            app:popExitAnim="@anim/alpha_out_500"-->
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.navigationdemo.MainFragment"
@@ -12,8 +14,8 @@
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment"
-            app:enterAnim="@anim/slide_right_in"
-            app:popExitAnim="@anim/slide_right_out" >
+            app:enterAnim="@anim/alpha_in_800_offset_500"
+            >
         </action>
 
         <argument
@@ -30,5 +32,16 @@
         android:id="@+id/secondFragment"
         android:name="com.example.navigationdemo.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second" >
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:enterAnim="@anim/alpha_in_800"
+            app:destination="@id/thirdFragment"
+            app:popUpTo="@id/secondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.example.navigationdemo.ThirdFragment"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_third" />
 </navigation>
