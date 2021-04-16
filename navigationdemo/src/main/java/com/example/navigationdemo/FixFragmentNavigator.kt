@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
@@ -41,11 +42,11 @@ class FixFragmentNavigator(val context: Context, val manager: FragmentManager, v
         if (className[0] == '.') {
             className = context.packageName + className
         }
-        val frag = instantiateFragment(
+   /*     val frag = instantiateFragment(
             context, manager,
             className, args
         )
-        frag.arguments = args
+        frag.arguments = args*/
         val ft = manager.beginTransaction()
 
         var enterAnim = navOptions?.enterAnim ?: -1
@@ -60,7 +61,30 @@ class FixFragmentNavigator(val context: Context, val manager: FragmentManager, v
             ft.setCustomAnimations(enterAnim, exitAnim, popEnterAnim, popExitAnim)
         }
 
-        ft.replace(containerId, frag)
+//        ft.replace(mContainerId, frag)
+
+        /**
+         * 1、先查询当前显示的fragment 不为空则将其hide
+         * 2、根据tag查询当前添加的fragment是否不为null，不为null则将其直接show
+         * 3、为null则通过instantiateFragment方法创建fragment实例
+         * 4、将创建的实例添加在事务中
+         */
+        val fragment = manager.primaryNavigationFragment //当前显示的fragment
+        if (fragment != null) {
+            ft.hide(fragment)
+        }
+
+        var frag: Fragment?
+        val tag = destination.id.toString()
+        Log.w("WWS", "tag = $tag action_mainFragment_to_secondFragment =${R.id.action_mainFragment_to_secondFragment} action_secondFragment_to_thirdFragment = ${R.id.action_secondFragment_to_thirdFragment}")
+        frag = manager.findFragmentByTag(tag)
+        if (frag != null) {
+            ft.show(frag)
+        } else {
+            frag = manager.fragmentFactory.instantiate(context.classLoader, className)
+            frag.arguments = args
+            ft.add(containerId, frag, tag)
+        }
         ft.setPrimaryNavigationFragment(frag)
 
         @IdRes val destId = destination.id
