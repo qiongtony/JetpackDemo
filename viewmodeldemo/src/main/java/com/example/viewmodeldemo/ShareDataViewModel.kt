@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class ShareDataViewModel : ViewModel(){
     val progress : MutableLiveData<Int> = MutableLiveData()
-
     init {
         progress.value = 0
     }

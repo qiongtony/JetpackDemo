@@ -1,4 +1,4 @@
-package com.example.viewmodeldemo
+package com.example.viewmodeldemo.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.viewmodeldemo.R
+import com.example.viewmodeldemo.TimerViewModel
+import kotlinx.android.synthetic.main.activity_live_data.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
         openShareActivity.setOnClickListener {
             startActivity(Intent(this, ShareActivity::class.java))
+        }
+
+        openLiveDataActivity.setOnClickListener {
+            startActivity(Intent(this, LiveDataActivity::class.java))
         }
     }
 
